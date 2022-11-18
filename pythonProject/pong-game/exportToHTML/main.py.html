@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #33ccff; font-weight: bold;}
+.s5 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">turtle </span><span class="s0">import </span><span class="s1">Screen</span><span class="s2">, </span><span class="s1">Turtle</span>
+<span class="s0">from </span><span class="s1">paddle </span><span class="s0">import </span><span class="s1">Paddle</span>
+<span class="s0">from </span><span class="s1">ball </span><span class="s0">import </span><span class="s1">Ball</span>
+<span class="s0">import </span><span class="s1">time </span><span class="s3"># To slow down the ball</span>
+<span class="s0">from </span><span class="s1">scoreboard </span><span class="s0">import </span><span class="s1">ScoreBoard</span>
+
+<span class="s1">screen = Screen()</span>
+<span class="s1">screen.setup(</span><span class="s4">800</span><span class="s2">, </span><span class="s4">600</span><span class="s1">)</span>
+<span class="s1">screen.title(</span><span class="s5">&quot;iNNK.PongGame&quot;</span><span class="s1">)</span>
+<span class="s1">screen.bgcolor(</span><span class="s5">&quot;black&quot;</span><span class="s1">)</span>
+<span class="s1">screen.tracer(</span><span class="s4">0</span><span class="s1">) </span><span class="s3"># it enables od disable animation</span>
+
+<span class="s1">r_paddle = Paddle((</span><span class="s4">350</span><span class="s2">, </span><span class="s4">0</span><span class="s1">))</span>
+<span class="s1">l_paddle = Paddle((-</span><span class="s4">350</span><span class="s2">, </span><span class="s4">0</span><span class="s1">))</span>
+
+<span class="s1">ball = Ball()</span>
+
+<span class="s1">scoreboard = ScoreBoard()</span>
+
+<span class="s1">screen.listen()</span>
+<span class="s1">screen.onkey(r_paddle.go_up</span><span class="s2">, </span><span class="s5">&quot;Up&quot;</span><span class="s1">)</span>
+<span class="s1">screen.onkey(r_paddle.go_down</span><span class="s2">, </span><span class="s5">&quot;Down&quot;</span><span class="s1">)</span>
+<span class="s1">screen.onkey(l_paddle.go_up</span><span class="s2">, </span><span class="s5">&quot;w&quot;</span><span class="s1">)</span>
+<span class="s1">screen.onkey(l_paddle.go_down</span><span class="s2">, </span><span class="s5">&quot;s&quot;</span><span class="s1">)</span>
+
+<span class="s1">game_is_on = </span><span class="s0">True</span>
+<span class="s0">while </span><span class="s1">game_is_on:</span>
+    <span class="s1">time.sleep(ball.move_speed) </span><span class="s3"># To slow down the ball</span>
+    <span class="s1">screen.update() </span><span class="s3"># It updates a screen when upper code is executed</span>
+    <span class="s1">ball.move()</span>
+
+    <span class="s3"># Detecting collision with wall i.e. top and bottom</span>
+    <span class="s0">if </span><span class="s1">ball.ycor() &gt; </span><span class="s4">280 </span><span class="s0">or </span><span class="s1">ball.ycor() &lt; -</span><span class="s4">280</span><span class="s1">:</span>
+        <span class="s3"># Needs to bounce</span>
+        <span class="s1">ball.bounce_y()</span>
+
+    <span class="s3"># Detecting collision with paddles</span>
+    <span class="s0">if </span><span class="s1">ball.distance(r_paddle) &lt; </span><span class="s4">50 </span><span class="s0">and </span><span class="s1">ball.xcor() &gt; </span><span class="s4">320 </span><span class="s0">or </span><span class="s1">ball.distance(l_paddle) &lt; </span><span class="s4">50 </span><span class="s0">and </span><span class="s1">ball.xcor() &lt; -</span><span class="s4">320</span><span class="s1">:</span>
+        <span class="s1">ball.bounce_x()</span>
+
+    <span class="s3"># R_Paddle miss the ball</span>
+    <span class="s0">if </span><span class="s1">ball.xcor() &gt; </span><span class="s4">380</span><span class="s1">:</span>
+        <span class="s1">ball.reset_position()</span>
+        <span class="s1">scoreboard.l_point()</span>
+
+    <span class="s3"># L_Paddle miss the ball</span>
+    <span class="s0">if </span><span class="s1">ball.xcor() &lt; -</span><span class="s4">380</span><span class="s1">:</span>
+        <span class="s1">ball.reset_position()</span>
+        <span class="s1">scoreboard.r_point()</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="s1">screen.exitonclick()</span></pre>
+</body>
+</html>
