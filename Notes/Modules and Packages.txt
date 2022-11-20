@@ -1,0 +1,35 @@
+Type 1:
+
+import mymodule  # mymodule is actually a python file which is mymodule.py
+
+>> x = mymodule.function_1() #to call req. function 
+
+Type 2:
+
+form module import function1,fun2
+
+x = function1()
+
+
+Type 3:
+
+import module as md # alising
+
+x = md.function()
+
+Type 4:
+
+from module import * # It imports all functions from Modul///Not recommanded///
+
+x = any_function()
+
+>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<>x<
+
+>>>Install or Uninstall:
+
+to install module packages :: pip install pakage_name
+to uninstall module package :: pip uninstall pakage_name
+
+
+Note: xyz.pyc here pyc is for cache 
+

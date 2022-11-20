@@ -1,0 +1,86 @@
+import re
+
+
+#### Simple Example of Regular Expression 
+
+patterns = ['Akshay', 'Pavan']
+
+text = "This is a string with name Akshay, not other!"
+
+
+for pattern in patterns:
+    print(f"I'm searching for: {pattern}")
+    
+    if re.search(pattern,text):
+        print("Match! found")
+    else:
+        print("No Match found!")
+
+
+#### Type of search
+
+text = "This is a string with name Pavan, not other!"
+
+match = re.search("Pavan", text)
+
+print(type(match))
+
+# Its type is not just boolean or none values its match
+
+print(match.start()) # It shows starting position of given str to search which is at 27.
+
+Result: 
+    <class 're.Match'>
+    27 
+
+#### Split using RE
+
+split_term = "@"
+
+email = "username@gmail.com"
+
+print(re.split(split_term, email))
+
+Result: 
+    ['username', 'gmail.com']
+
+### re.findall
+
+text = "sdgf sdgf sdfggdsfsfg dfg fg gf dsfgfg Akshay sdfdsafgsdafg Pavan"
+x = re.findall("Akshay", text)
+print(x)
+
+
+###### re.findall(pattern, item)
+
+def multi_re_find(patterns, text):
+    
+    for pattern in patterns:
+        print(f"Searching for pattern {pattern}")
+        print(re.findall(pattern, text))
+        print("\n")
+        
+        
+test_text = "sdsd..sssddd..sdddsddd...dsds...dssssss...sddddd"
+test_str = "This is a String! BUt it has punctuation. How #212515 can we remove it?"
+
+test_patterns = ["sd*"]
+test_patterns = ["sd+"] # + 1 or more d
+test_patterns = ["sd?"]
+test_patterns = ["sd{3}"] # 3 ddd
+test_patterns = ["sd{1,3}"] # 1 or 3 d
+test_patterns = ["s[sd]+"]
+test_patterns = ["sd+"]
+
+test_patterns_1 = ["[^!.?]+"] # multiple removes for here i.e. !, . and ?
+test_patterns_1 = ["[a-z]+"] # all the lower case charectors 
+test_patterns_1 = ["[A-Z]+"] # all upper case char
+test_patterns_1 = [r"\d+"] # Num from string
+test_patterns_1 = [r"\D+"] # NOT DIGIT
+test_patterns_1 = [r"\s+"] #all white case
+test_patterns_1 = [r"\S+"] # None white case
+test_patterns_1 = [r"\w+"] # alpha num
+test_patterns_1 = [r"\W+"] # none alpha num
+
+multi_re_find(test_patterns, test_text)
+multi_re_find(test_patterns_1, test_str)

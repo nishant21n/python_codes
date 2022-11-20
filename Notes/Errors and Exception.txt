@@ -1,0 +1,63 @@
+##try, except, finally##
+
+*Case 1:
+
+try:
+    f = open(r"C:\Users\innk\Desktop\GitHub\temp.txt", "w")
+    f.write("Test write to simple text! 21 21 21")
+
+except:
+    print("ERROR: COULD NOT FIND OR READ DATA!")
+
+else:
+    print("Success!")
+    f.close() 
+Result: 
+     Success!
+
+*Case 2: 
+
+try:
+    f = open(r"C:\Users\innk\Desktop\GitHub\temp.txt", "r")
+    f.write("Test write to simple text! 21 21 21")
+
+except:
+    print("ERROR: COULD NOT FIND OR READ DATA!")
+
+else:
+    print("Success!")
+    f.close() 
+Result: 
+     ERROR: COULD NOT FIND OR READ DATA!
+
+*Case 3:
+
+try:
+    f = open(r"C:\Users\innk\Desktop\GitHub\temp.txt")
+    f.write("Test write to simple text! 21 21 21")
+
+except:
+    print("ERROR: COULD NOT FIND OR READ DATA!")
+
+finally:
+    print("It works what ever error is! Success!!")  
+    f.close() 
+    
+Result:
+    ERROR: COULD NOT FIND OR READ DATA!
+    It works what ever error is! Success!!
+
+*Case 4:
+
+try:
+    f = open(r"C:\Users\innk\Desktop\GitHub\temp.txt", "r")
+    f.write("Test write to simple text! 21 21 21"
+
+except:
+    print("ERROR: COULD NOT FIND OR READ DATA!")
+
+finally:
+    print("Success!")
+    f.close() 
+
+Result : Har error in try except conditions normal syntex erros are not considered 

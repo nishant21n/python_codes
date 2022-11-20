@@ -1,0 +1,118 @@
+#### Decorators
+
+Case 1:
+
+S = "GLOBAL VARIABLE"
+
+def func():
+    mylocal = 10
+    # print(locals()) # It shows all local variables 
+    # print(globals()) # It shows all global variables form of dict
+    print(globals()["S"])
+
+func()
+
+Case 2:
+
+def hello(name="XYZ"):
+    return "Hello " + name
+
+print(hello()) # main function O/P
+
+hello_var = hello # Its how assingn new function to new veriable 
+
+print(hello_var()) # Same out put as main function 
+
+def new_func(name="ABC"):
+    print("The new_function() Function has been Run.")
+    
+Case 3:
+
+def hello():
+    print("hello() Function Run**")
+    def mello():
+        return "This is string inside mello()"
+    def kello():
+        return "This is string inside kello()"
+    print(mello())
+    print(kello())
+    print("End of hello()")
+    
+hello()
+# print(hello.mello()) # Not executable 
+
+Case 4:
+
+def hello(name = "xyz"): # When name is diff. it return kello
+    print("hello() Function Run**")
+    def mello():
+        return "This is string inside mello()"
+    def kello():
+        return "This is string inside kello()"
+    
+    if name == "xyz":
+        return mello
+    else:
+        return kello
+    
+
+    
+x = hello()
+
+print(x())
+
+
+Case 5:
+
+# Function as argument
+
+def function_one():
+    return "Inside Function One"
+
+def other(func):
+    print("Inside other()")
+    print(func())
+    
+other(function_one)
+
+
+Case 6:
+
+# above all are manually created decoretaors 
+
+# Decorator
+
+def new_decorator(func):
+    
+    def wrap_func():
+        print("CODE HERE BEFORE EXECUTING FUNC")
+        func()
+        print("func() has been called")
+
+    return wrap_func
+
+
+  
+#>>>> With Decorator
+
+@new_decorator
+def func_needs_decorator():
+    print("This function is need of a Decorator")
+    
+func_needs_decorator()
+
+Result : Same as bellow code.
+  
+#>>> With out Decorator    
+# func_needs_decorator = new_decorator(func_needs_decorator)
+
+# func_needs_decorator()
+
+# Result : 
+
+# CODE HERE BEFORE EXECUTING FUNC
+# This function is need of a Decorator     
+# func() has been called
+
+
+    
